@@ -1,4 +1,4 @@
-# Read Apps.json and return list of app objects with optional filtering
+﻿# Read Apps.json and return list of app objects with optional filtering
 function LoadAppsDetailsFromJson {
     param (
         [switch]$OnlyInstalled,
@@ -11,7 +11,7 @@ function LoadAppsDetailsFromJson {
         $jsonContent = Get-Content -Path $script:AppsListFilePath -Raw | ConvertFrom-Json
     }
     catch {
-        Write-Error "Failed to read Apps.json: $_"
+        Write-Error "无法读取 Apps.json：$_"
         return $apps
     }
 

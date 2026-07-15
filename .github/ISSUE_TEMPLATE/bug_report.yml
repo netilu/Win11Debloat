@@ -1,79 +1,79 @@
-name: "🐞 Bug report"
-description: "Report an issue you encountered"
+name: "🐞 错误报告"
+description: "报告你遇到的问题"
 labels: ["bug", "unconfirmed"]
 
 body:
   - type: markdown
     attributes:
       value: |
-        # 🐞 **Bug report**
-        Thanks for taking the time to fill out this bug report! Please provide as much information as possible in your report to help us understand and resolve the issue.
+        # 🐞 **错误报告**
+        感谢你花时间填写错误报告！请尽可能提供完整信息，以便我们理解并解决问题。
 
   - type: checkboxes
     id: checklist
     attributes:
-      label: Checklist
-      description: Please confirm the following before posting your issue.
+      label: 检查清单
+      description: 提交问题前，请确认以下事项。
       options:
-        - label: I have searched for existing issues/discussions and didn't find any similar ones.
+        - label: 我已搜索现有 Issue 和讨论，未发现相同问题。
           required: true
-        - label: I haven't used any other scripts, tools or programs that might have caused this issue.
+        - label: 我没有使用其他可能导致该问题的脚本、工具或程序。
           required: false
 
   - type: input
     id: windows_version
     attributes:
-      label: Windows version
-      description: What version of Windows are you using?
-      placeholder: e.g. Windows 11 24H2 (26100.4202)
+      label: Windows 版本
+      description: 你正在使用哪个版本的 Windows？
+      placeholder: 例如：Windows 11 24H2（26100.4202）
     validations:
       required: true
 
   - type: input
     id: script_setting
     attributes:
-      label: Script mode/options
-      description: What mode/options did you use with the script?
-      placeholder: e.g. "Default mode", "Custom mode with options X, Y, Z"
+      label: 脚本模式和选项
+      description: 运行脚本时使用了哪些模式或选项？
+      placeholder: 例如：“默认模式”或“自定义模式，选择了 X、Y、Z”
     validations:
       required: true
 
   - type: textarea
     id: issue_description
     attributes:
-      label: Describe the issue
-      description: Provide a clear and detailed description of the issue.
-      placeholder: e.g. "When I ran the script I expected [...], but instead [...]. This caused [...]."
+      label: 问题描述
+      description: 请清晰、详细地描述问题。
+      placeholder: 例如：“运行脚本时，我原本预期……，但实际……，导致……。”
     validations:
       required: true
 
   - type: textarea
     id: steps_to_reproduce
     attributes:
-      label: Steps to reproduce
-      description: How can the behaviour be reproduced? Please provide detailed steps.
+      label: 复现步骤
+      description: 如何复现该问题？请提供详细步骤。
       placeholder: |
-        1. Open '...'
-        2. Select '...'
-        3. Wait for '...'
-        4. Etc.
+        1. 打开“……”
+        2. 选择“……”
+        3. 等待“……”
+        4. ……
     validations:
       required: true
 
   - type: textarea
     id: error_logs
     attributes:
-      label: Error output
-      description: "Include any relevant logs or error messages. Logs can be found in `%temp%/Win11Debloat` or the root folder of the script. Please keep in mind that logs may contain personal information such as usernames and the name of your PC, so review them before submitting."
-      placeholder: Include any relevant logs or error messages.
+      label: 错误输出
+      description: "请附上相关日志或错误消息。日志位于 `%temp%/Win11Debloat` 或脚本根目录。日志可能包含用户名、计算机名等个人信息，请在提交前仔细检查。"
+      placeholder: 请粘贴相关日志或错误消息。
     validations:
       required: false
 
   - type: textarea
     id: additional_context
     attributes:
-      label: Additional context
-      description: Add any other context about the problem here.
-      placeholder: e.g. Screenshots, links to related discussions, etc.
+      label: 补充信息
+      description: 在此添加与问题有关的其他信息。
+      placeholder: 例如：截图、相关讨论链接等。
     validations:
       required: false

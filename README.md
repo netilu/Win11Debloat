@@ -1,174 +1,172 @@
-# Win11Debloat
+﻿# Win11Debloat
 
-[![GitHub Release](https://img.shields.io/github/v/release/Raphire/Win11Debloat?style=for-the-badge&label=Latest%20release)](https://github.com/Raphire/Win11Debloat/releases/latest)
-[![Join the Discussion](https://img.shields.io/badge/Join-the%20Discussion-2D9F2D?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Raphire/Win11Debloat/discussions)
-[![Static Badge](https://img.shields.io/badge/Documentation-_?style=for-the-badge&logo=bookstack&color=grey)](https://github.com/Raphire/Win11Debloat/wiki/)
+[![GitHub 最新版本](https://img.shields.io/github/v/release/Raphire/Win11Debloat?style=for-the-badge&label=%E6%9C%80%E6%96%B0%E7%89%88%E6%9C%AC)](https://github.com/Raphire/Win11Debloat/releases/latest)
+[![参与讨论](https://img.shields.io/badge/%E5%8F%82%E4%B8%8E%E8%AE%A8%E8%AE%BA-2D9F2D?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Raphire/Win11Debloat/discussions)
+[![文档](https://img.shields.io/badge/%E6%96%87%E6%A1%A3-_?style=for-the-badge&logo=bookstack&color=grey)](https://github.com/Raphire/Win11Debloat/wiki/)
 
- Win11Debloat is a lightweight, easy to use PowerShell script that allows you to quickly declutter and customize your Windows experience, no installation required! You can use it to remove pre-installed apps, disable telemetry, remove intrusive interface elements and much more. No need to painstakingly go through all the settings yourself or remove apps one by one. Win11Debloat makes the process quick and easy!
+Win11Debloat 是一个轻量、易用的 PowerShell 脚本，无需安装即可快速精简和自定义 Windows。它可以移除预装应用、禁用遥测、去除干扰性界面元素等，让你不必逐项翻找设置或逐个卸载应用。
 
-The script also includes many features that system administrators and power users will enjoy. Such as a powerful command-line interface, support for Windows Audit mode and the ability to make changes to other Windows users. You can also easily export & import your preferred settings, allowing you to quickly apply the same settings on all your systems. Please refer to our [wiki](https://github.com/Raphire/Win11Debloat/wiki) for more details.
+脚本还提供了适合系统管理员和高级用户的功能，包括功能完整的命令行界面、Windows 审核模式支持，以及为其他 Windows 用户应用更改。你也可以方便地导入和导出偏好设置，从而在多台设备上快速应用相同配置。更多信息请参阅项目 [Wiki](https://github.com/Raphire/Win11Debloat/wiki)。
 
-![Win11Debloat Menu](/Assets/Images/menu.png)
-
-#### Did this script help you? Please consider buying me a cup of coffee to support my work
+#### 如果这个脚本对你有帮助，欢迎请作者喝杯咖啡以支持项目维护
 
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/M4M5C6UPC)
 
-## Usage
+## 使用方法
 
 > [!Warning]
-> Great care went into making sure this script does not unintentionally break any OS functionality, but use at your own risk! If you run into any issues, please report them [here](https://github.com/Raphire/Win11Debloat/issues).
+> 项目已尽力确保脚本不会意外破坏操作系统功能，但请自行承担使用风险。如果遇到问题，请在[这里](https://github.com/Raphire/Win11Debloat/issues)报告。
 
-### Quick method
+### 快速方法
 
-Download & run the script automatically via PowerShell.
+通过 PowerShell 自动下载并运行脚本。
 
-1. Open PowerShell or Terminal.
-2. Copy and paste the command below into PowerShell:
+1. 打开 PowerShell 或终端。
+2. 将以下命令复制并粘贴到 PowerShell：
 
 ```PowerShell
 & ([scriptblock]::Create((irm "https://debloat.raphi.re/")))
 ```
 
-3. Wait for the script to automatically download and launch Win11Debloat.
-4. Carefully read through and follow the on-screen instructions.
+3. 等待脚本自动下载并启动 Win11Debloat。
+4. 仔细阅读并按照屏幕提示操作。
 
-This method supports command-line parameters to customize the behaviour of the script. Please click [here](https://github.com/Raphire/Win11Debloat/wiki/Command%E2%80%90line-Interface#parameters) for more information.
+此方法支持命令行参数，可用于自定义脚本行为。更多信息请参阅 [Wiki 中的命令行界面说明](https://github.com/Raphire/Win11Debloat/wiki/Command%E2%80%90line-Interface#parameters)。
 
-### Traditional method
+### 传统方法
 
 <details>
-  <summary>Manually download & run the script.</summary><br/>
+  <summary>手动下载并运行脚本</summary><br/>
 
-  1. [Download the latest version of the script](https://github.com/Raphire/Win11Debloat/releases/latest), and extract the .ZIP file to your desired location.
-  2. Navigate to the Win11Debloat folder
-  3. Double click the `Run.bat` file to start the script. NOTE: If the console window immediately closes and nothing happens, try the advanced method below.
-  4. Accept the Windows UAC prompt to run the script as administrator, this is required for the script to function.
-  5. Carefully read through and follow the on-screen instructions.
+  1. [下载最新版本](https://github.com/Raphire/Win11Debloat/releases/latest)，并将 ZIP 文件解压到所需位置。
+  2. 打开 Win11Debloat 文件夹。
+  3. 双击 `Run.bat` 启动脚本。如果控制台窗口立即关闭且没有任何反应，请尝试下方的高级方法。
+  4. 接受 Windows UAC 提示，以管理员身份运行脚本；这是脚本正常工作所必需的。
+  5. 仔细阅读并按照屏幕提示操作。
 </details>
 
-### Advanced method
+### 高级方法
 
 <details>
-  <summary>Manually download the script & run the script via PowerShell. Recommended for advanced users.</summary><br/>
+  <summary>手动下载脚本，并通过 PowerShell 运行。推荐高级用户使用</summary><br/>
 
-  1. [Download the latest version of the script](https://github.com/Raphire/Win11Debloat/releases/latest), and extract the .ZIP file to your desired location.
-  2. Open PowerShell or Terminal as an administrator.
-  3. Temporarily enable PowerShell execution by entering the following command:
+  1. [下载最新版本](https://github.com/Raphire/Win11Debloat/releases/latest)，并将 ZIP 文件解压到所需位置。
+  2. 以管理员身份打开 PowerShell 或终端。
+  3. 输入以下命令，临时允许 PowerShell 执行脚本：
 
   ```PowerShell
   Set-ExecutionPolicy Unrestricted -Scope Process -Force
   ```
 
-  4. In PowerShell, navigate to the directory where the files were extracted. Example: `cd c:\Win11Debloat`
-  5. Now run the script by entering the following command:
+  4. 在 PowerShell 中进入解压后的目录，例如：`cd c:\Win11Debloat`。
+  5. 输入以下命令运行脚本：
 
   ```PowerShell
   .\Win11Debloat.ps1
   ```
 
-  6. Carefully read through and follow the on-screen instructions.
+  6. 仔细阅读并按照屏幕提示操作。
 
-  This method supports command-line parameters to customize the behaviour of the script. Please click [here](https://github.com/Raphire/Win11Debloat/wiki/Command%E2%80%90line-Interface#parameters) for more information.
+  此方法支持命令行参数，可用于自定义脚本行为。更多信息请参阅 [Wiki 中的命令行界面说明](https://github.com/Raphire/Win11Debloat/wiki/Command%E2%80%90line-Interface#parameters)。
 </details>
 
-## Features
+## 功能
 
-Below is an overview of the key features and functionality offered by Win11Debloat. You can visit the [the wiki](https://github.com/Raphire/Win11Debloat/wiki) for more details.
+以下是 Win11Debloat 主要功能的概览。详细说明请参阅项目 [Wiki](https://github.com/Raphire/Win11Debloat/wiki)。
 
 > [!Tip]
-> All of the changes made by Win11Debloat can easily be reverted and almost all of the apps can be reinstalled through the Microsoft Store. You can visit [the wiki](https://github.com/Raphire/Win11Debloat/wiki/Reverting-Changes) for more information on reverting changes.
+> Win11Debloat 所做的更改都可以方便地还原，绝大多数应用也可以通过 Microsoft Store 重新安装。还原方法请参阅 [Wiki](https://github.com/Raphire/Win11Debloat/wiki/Reverting-Changes)。
 
-#### App Removal
+#### 应用移除
 
-- Remove a wide variety of preinstalled apps. Click [here](https://github.com/Raphire/Win11Debloat/wiki/App-Removal) for more info.
+- 移除多种预装应用。更多信息请参阅[应用移除说明](https://github.com/Raphire/Win11Debloat/wiki/App-Removal)。
 
-#### Privacy & Suggested Content
+#### 隐私和建议内容
 
-- Disable telemetry, diagnostic data, activity history, app-launch tracking & targeted ads.
-- Disable tips, tricks, suggestions & ads across Windows, the lock screen and Microsoft Edge.
-- Disable Windows location services, app location access and Find My Device location tracking.
-- Hide Microsoft 365 ads on the Settings 'Home' page, or hide the 'Home' page entirely.
+- 禁用遥测、诊断数据、活动历史记录、应用启动跟踪和定向广告。
+- 禁用 Windows、锁屏界面和 Microsoft Edge 中的提示、技巧、建议和广告。
+- 禁用 Windows 定位服务、应用位置访问和“查找我的设备”位置跟踪。
+- 隐藏“设置”主页中的 Microsoft 365 广告，或完全隐藏“主页”页面。
 
-#### AI Features
+#### AI 功能
 
-- Disable & remove Microsoft Copilot, Windows Recall and Click to Do.
-- Prevent AI service (WSAIFabricSvc) from starting automatically.
-- Disable AI Features in Edge, Paint and Notepad.
+- 禁用并移除 Microsoft Copilot、Windows 回顾和“单击即做”。
+- 阻止 AI 服务（WSAIFabricSvc）自动启动。
+- 禁用 Edge、画图和记事本中的 AI 功能。
 
-#### System
+#### 系统
 
-- Disable the Drag Tray for sharing & moving files.
-- Restore the old Windows 10 style context menu.
-- Turn off Enhance Pointer Precision (mouse acceleration).
-- Disable the Sticky Keys keyboard shortcut.
-- Disable Storage Sense automatic disk cleanup.
-- Disable fast start-up to ensure a full shutdown.
-- Disable BitLocker automatic device encryption.
-- Disable network connectivity during Modern Standby to reduce battery drain.
+- 禁用用于共享和移动文件的“拖动托盘”。
+- 恢复经典 Windows 10 风格的右键菜单。
+- 关闭“提高指针精确度”（鼠标加速）。
+- 禁用粘滞键键盘快捷键。
+- 禁用存储感知自动磁盘清理。
+- 禁用快速启动，确保完整关机。
+- 禁用 BitLocker 自动设备加密。
+- 禁用现代待机期间的网络连接以减少耗电。
 
-#### Windows Update
+#### Windows 更新
 
-- Prevent Windows from getting updates as soon as they're available.
-- Prevent automatic restarts after updates while signed in.
-- Disable sharing of downloaded updates with other PCs, also known as Delivery Optimization.
-- Prevent Windows from auto-installing device companion apps.
+- 阻止 Windows 第一时间获取可用更新。
+- 阻止登录期间在更新后自动重启。
+- 禁用与其他电脑共享已下载的更新（传递优化）。
+- 阻止 Windows 自动安装设备配套应用。
 
-#### Appearance
+#### 外观
 
-- Enable dark mode for system and apps.
-- Disable transparency, animations and visual effects.
+- 为系统和应用启用深色模式。
+- 禁用透明、动画和视觉效果。
 
-#### Start Menu & Search
+#### 开始菜单和搜索
 
-- Customize the start menu by removing pinned apps, hiding recommendations, and customizing the 'All Apps' section.
-- Disable the Phone Link mobile devices integration in the start menu.
-- Disable Bing web search & Copilot integration and Microsoft Store app suggestions in Windows search.
+- 移除固定应用、隐藏推荐内容，并自定义“所有应用”区域。
+- 禁用开始菜单中的“手机连接”移动设备集成。
+- 禁用 Windows 搜索中的 Bing 网页搜索、Copilot 集成和 Microsoft Store 应用建议。
 
-#### Taskbar
+#### 任务栏
 
-- Change taskbar alignment.
-- Customize or hide taskbar buttons like the search bar, taskview and more.
-- Disable widgets on the taskbar & lock screen.
-- Enable the 'End Task' option in the taskbar right click menu to quickly force-close apps.
-- Enable the 'Last Active Click' behavior in the taskbar app area. This allows you to repeatedly click on an application's icon in the taskbar to switch focus between the open windows of that application.
-- Customize how app buttons are shown on the taskbar.
+- 更改任务栏对齐方式。
+- 自定义或隐藏搜索栏、任务视图等任务栏按钮。
+- 禁用任务栏和锁屏界面上的小组件。
+- 在任务栏右键菜单中启用“结束任务”，以便快速强制关闭应用。
+- 启用任务栏应用的“上次活动窗口单击”行为，重复点击应用图标即可在该应用打开的窗口之间切换。
+- 自定义任务栏应用按钮的显示方式。
 
-#### File Explorer
+#### 文件资源管理器
 
-- Change the default location that File Explorer opens to.
-- Show file extensions for known file types.
-- Show hidden files, folders and drives.
-- Hide the Home, Gallery or OneDrive section from the File Explorer navigation pane.
-- Hide duplicate removable drive entries from the File Explorer navigation pane, so only the entry under 'This PC' remains.
-- Add all common folders (Desktop, Downloads, etc.) back to 'This PC' in File Explorer.
-- Change drive letter position or visibility in File Explorer.
+- 更改文件资源管理器默认打开的位置。
+- 显示已知文件类型的扩展名。
+- 显示隐藏的文件、文件夹和驱动器。
+- 在导航窗格中隐藏主页、图库或 OneDrive。
+- 隐藏导航窗格中重复的可移动驱动器条目，只保留“此电脑”下的条目。
+- 将桌面、下载等常用文件夹重新添加到“此电脑”。
+- 更改驱动器号的位置或可见性。
 
-#### Multi-tasking
+#### 多任务
 
-- Disable window snapping.
-- Disable Snap Assist and Snap Layout suggestions when dragging or snapping windows.
-- Change whether tabs are shown when snapping windows or pressing Alt+Tab.
+- 禁用窗口贴靠。
+- 禁用贴靠窗口时的贴靠助手和贴靠布局建议。
+- 更改贴靠窗口或按 Alt+Tab 时是否显示应用标签页。
 
-#### Optional Windows Features
+#### Windows 可选功能
 
-- Enable Windows Sandbox, a lightweight desktop environment for safely running applications in isolation.
-- Enable Windows Subsystem for Linux which allows you to run a Linux environment directly on Windows.
+- 启用 Windows 沙盒，在隔离的轻量桌面环境中安全运行应用。
+- 启用适用于 Linux 的 Windows 子系统，直接在 Windows 上运行 Linux 环境。
 
-#### Other
+#### 其他
 
-- Disable Xbox Game Bar integration & game/screen recording. This also disables `ms-gamingoverlay`/`ms-gamebar` popups if you uninstall the Xbox Game Bar.
-- Disable bloat in Brave browser (AI, Crypto, News, etc.)
+- 禁用 Xbox Game Bar 集成和游戏/屏幕录制。如果卸载 Xbox Game Bar，也会阻止 `ms-gamingoverlay` 和 `ms-gamebar` 弹窗。
+- 禁用 Brave 浏览器中的 AI、加密货币、新闻等奖励和推广功能。
 
-#### Advanced Features
+#### 高级功能
 
-- Ability to [apply changes to a different user](https://github.com/Raphire/Win11Debloat/wiki/Advanced-Features#running-as-another-user), instead of the currently logged in user.
-- [Sysprep mode](https://github.com/Raphire/Win11Debloat/wiki/Advanced-Features#sysprep-mode) to apply changes to the Windows Default user profile. Which ensures, all new users will have the changes automatically applied to them.
+- [将更改应用到其他用户](https://github.com/Raphire/Win11Debloat/wiki/Advanced-Features#running-as-another-user)，而不只是当前登录用户。
+- 使用 [Sysprep 模式](https://github.com/Raphire/Win11Debloat/wiki/Advanced-Features#sysprep-mode)将更改应用到 Windows 默认用户配置文件，使之后创建的新用户自动获得相同设置。
 
-## Contributing
+## 参与贡献
 
-We welcome contributions of all kinds! Please see our [Contributing Guidelines](https://github.com/Raphire/Win11Debloat/blob/master/.github/CONTRIBUTING.md) for detailed instructions on how to get started and best practices for contributing.
+欢迎各种形式的贡献！有关入门方式和最佳实践，请参阅[贡献指南](https://github.com/Raphire/Win11Debloat/blob/master/.github/CONTRIBUTING.md)。
 
-## License
+## 许可证
 
-Win11Debloat is licensed under the MIT license. See the LICENSE file for more information.
+Win11Debloat 使用 MIT 许可证。详细信息请参阅 LICENSE 文件。

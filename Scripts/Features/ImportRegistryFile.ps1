@@ -1,4 +1,4 @@
-# Import & execute regfile
+﻿# Import & execute regfile
 function ImportRegistryFile {
     param (
         $message,
@@ -11,9 +11,9 @@ function ImportRegistryFile {
     $regFilePath = Get-RegistryFilePathForFeature -RegistryKey $path
 
     if (-not (Test-Path $regFilePath)) {
-        $errorMessage = "Unable to find registry file: $path ($regFilePath)"
+        $errorMessage = "找不到注册表文件：$path（$regFilePath）"
         $script:RegistryImportFailures++
-        Write-Host "Error: $errorMessage" -ForegroundColor Red
+        Write-Host "错误：$errorMessage" -ForegroundColor Red
         Write-Host ""
         throw $errorMessage
     }
@@ -34,7 +34,7 @@ function ImportRegistryFile {
 
         if ($usePowerShellFallbackOnly) {
             Invoke-RegistryOperationsFromRegFile -RegFilePath $targetRegFilePath
-            Write-Host "The operation completed successfully via PowerShell registry writer."
+            Write-Host "已通过 PowerShell 注册表写入器成功完成操作。"
             Write-Host ""
             return
         }
@@ -58,7 +58,7 @@ function ImportRegistryFile {
                 $result.ExitCode = $importExitCode
 
                 if ($importExitCode -ne 0) {
-                    throw "Registry import failed with exit code $importExitCode for '$targetRegFilePath'"
+            throw "导入注册表文件「$targetRegFilePath」失败，退出代码：$importExitCode"
                 }
             }
             catch {
@@ -87,10 +87,10 @@ function ImportRegistryFile {
         }
 
         if (-not $hasSuccess) {
-            $details = if ($regResult.Error) { $regResult.Error } else { "Exit code: $($regResult.ExitCode)" }
-            Write-Warning "reg import failed for '$path'. Falling back to PowerShell registry writer. Details: $details"
+            $details = if ($regResult.Error) { $regResult.Error } else { "退出代码：$($regResult.ExitCode)" }
+            Write-Warning "对「$path」执行 reg import 失败，将回退到 PowerShell 注册表写入器。详细信息：$details"
             Invoke-RegistryOperationsFromRegFile -RegFilePath $targetRegFilePath
-            Write-Host "The operation completed successfully via PowerShell registry writer."
+            Write-Host "已通过 PowerShell 注册表写入器成功完成操作。"
         }
 
         Write-Host ""

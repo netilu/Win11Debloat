@@ -1,4 +1,4 @@
-<#
+﻿<#
     .SYNOPSIS
         Creates a lightweight state object for the restore-backup dialog result.
 
@@ -97,7 +97,7 @@ function Get-RestoreDialogFeatureDisplayLabel {
     )
 
     if ([string]::IsNullOrWhiteSpace($FeatureId)) {
-        return 'Unknown feature'
+        return '未知功能'
     }
 
     $featureDefinition = Get-RestoreDialogFeatureDefinition -FeatureId $FeatureId -Features $Features

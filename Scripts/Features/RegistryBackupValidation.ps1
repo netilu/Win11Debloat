@@ -1,4 +1,4 @@
-function Get-NormalizedSelectedFeatureIdsFromBackup {
+﻿function Get-NormalizedSelectedFeatureIdsFromBackup {
     param(
         [Parameter(Mandatory)]
         $Backup
@@ -10,7 +10,7 @@ function Get-NormalizedSelectedFeatureIdsFromBackup {
     $hasInvalidSelectedFeatureId = $false
 
     if (-not $Backup.PSObject.Properties['SelectedFeatures']) {
-        $errors.Add('Missing property: SelectedFeatures')
+        $errors.Add('缺少属性：SelectedFeatures')
         return [PSCustomObject]@{
             SelectedFeatures = $selectedFeatures.ToArray()
             Errors = $errors.ToArray()
@@ -30,7 +30,7 @@ function Get-NormalizedSelectedFeatureIdsFromBackup {
     }
 
     if ($hasInvalidSelectedFeatureId) {
-        $errors.Add('SelectedFeatures must contain non-empty string feature IDs.')
+        $errors.Add('SelectedFeatures 必须包含非空字符串形式的功能 ID。')
     }
 
     return [PSCustomObject]@{
@@ -71,7 +71,7 @@ function Get-NormalizedSelectedUndoFeatureIdsFromBackup {
     }
 
     if ($hasInvalidSelectedUndoFeatureId) {
-        $errors.Add('SelectedUndoFeatures must contain non-empty string feature IDs.')
+        $errors.Add('SelectedUndoFeatures 必须包含非空字符串形式的功能 ID。')
     }
 
     return [PSCustomObject]@{
@@ -87,7 +87,7 @@ function Normalize-RegistryKeySnapshot {
     )
 
     if (-not $Snapshot.PSObject.Properties['Path'] -or [string]::IsNullOrWhiteSpace([string]$Snapshot.Path)) {
-        throw 'Backup validation failed: Registry key snapshot is missing Path.'
+        throw '备份验证失败：注册表项快照缺少 Path。'
     }
 
     $exists = $false
@@ -145,7 +145,7 @@ function Test-RegistryBackupMatchesSelectedFeatures {
     $errors = New-Object System.Collections.Generic.List[string]
 
     if (-not $script:Features -or $script:Features.Count -eq 0) {
-        $errors.Add('Unable to validate registry backup allowlist because feature definitions are not loaded.')
+        $errors.Add('功能定义尚未加载，无法验证注册表备份允许列表。')
         return $errors.ToArray()
     }
 
@@ -161,7 +161,7 @@ function Test-RegistryBackupMatchesSelectedFeatures {
     $planMap = New-RegistryBackupAllowListPlanMap -CapturePlans @($capturePlans)
 
     if ($planMap.Count -eq 0 -and @($RegistryKeys).Count -gt 0) {
-        $errors.Add('Backup contains registry snapshots but no allowed registry paths were derived from the selected features.')
+        $errors.Add('备份包含注册表快照，但无法根据所选功能推导出允许的注册表路径。')
     }
 
     foreach ($rootSnapshot in @($RegistryKeys)) {
@@ -184,13 +184,13 @@ function Get-SelectedRegistryFeaturesForBackupValidation {
     )
 
     if ($null -eq $Errors -or -not ($Errors -is [System.Collections.IList])) {
-        throw 'Get-SelectedRegistryFeaturesForBackupValidation requires Errors to be a mutable list collection.'
+        throw 'Get-SelectedRegistryFeaturesForBackupValidation 要求 Errors 为可变列表集合。'
     }
 
     $selectedRegistryFeatures = New-Object System.Collections.Generic.List[object]
     foreach ($featureId in @($SelectedFeatureIds)) {
         if (-not $script:Features.ContainsKey($featureId)) {
-            $Errors.Add("Selected feature '$featureId' was not found in the current feature catalog.")
+            $Errors.Add("当前功能目录中找不到所选功能「$featureId」。")
             continue
         }
 
@@ -276,13 +276,13 @@ function Test-RegistrySnapshotAgainstAllowList {
     $snapshotPath = [string]$Snapshot.Path
     $normalizedPath = Get-NormalizedRegistryPathKey -Path $snapshotPath
     if ([string]::IsNullOrWhiteSpace($normalizedPath)) {
-        $Errors.Add("Backup contains unsupported registry path '$snapshotPath'.")
+        $Errors.Add("备份包含不支持的注册表路径「$snapshotPath」。")
         return
     }
 
     $planMatch = Find-RegistryAllowListPlanMatch -NormalizedPath $normalizedPath -PlanMap $PlanMap
     if ($null -eq $planMatch) {
-        $Errors.Add("Backup contains unexpected registry path '$snapshotPath' that is not allowed by SelectedFeatures.")
+        $Errors.Add("备份包含 SelectedFeatures 不允许的意外注册表路径「$snapshotPath」。")
         return
     }
 
@@ -291,18 +291,18 @@ function Test-RegistrySnapshotAgainstAllowList {
         $valueExists = [bool]$valueSnapshot.Exists
 
         if (-not (Test-RegistryValueAllowedByPlan -PlanMatch $planMatch -ValueName $valueName)) {
-            $Errors.Add("Backup contains unexpected value '$valueName' under '$snapshotPath'.")
+            $Errors.Add("备份在「$snapshotPath」下包含意外的值「$valueName」。")
         }
 
         $kindName = if ($valueSnapshot.PSObject.Properties['Kind']) { [string]$valueSnapshot.Kind } else { '' }
         $valueReference = Get-RegistryValueReferenceForError -SnapshotPath $snapshotPath -ValueName $valueName
         if ($valueExists) {
             if (-not (Test-RegistryValueKindNameSupported -KindName $kindName)) {
-                $Errors.Add("Backup contains unsupported registry value kind '$kindName' for '$valueReference'.")
+                $Errors.Add("备份中的「$valueReference」使用了不支持的注册表值类型「$kindName」。")
             }
         }
         elseif (-not [string]::IsNullOrWhiteSpace($kindName)) {
-            $Errors.Add("Backup value '$valueReference' must not define Kind when Exists is false.")
+            $Errors.Add("当 Exists 为 false 时，备份值「$valueReference」不得定义 Kind。")
         }
     }
 

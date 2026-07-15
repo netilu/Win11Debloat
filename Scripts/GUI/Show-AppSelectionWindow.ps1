@@ -1,4 +1,4 @@
-# Shows application selection window that allows the user to select what apps they want to remove or keep
+﻿# Shows application selection window that allows the user to select what apps they want to remove or keep
 function Show-AppSelectionWindow {
     Add-Type -AssemblyName PresentationFramework,PresentationCore,WindowsBase | Out-Null
 
@@ -60,7 +60,7 @@ function Show-AppSelectionWindow {
             $listOfApps = GetInstalledAppsViaWinget -TimeOut 10 -NonBlocking
             if ($null -eq $listOfApps) {
                 # Show error that the script was unable to get list of apps from WinGet
-                Show-MessageBox -Message 'Unable to load list of installed apps via WinGet.' -Title 'Error' -Button 'OK' -Icon 'Error' -Owner $window | Out-Null
+                Show-MessageBox -Message '无法通过 WinGet 加载已安装应用列表。' -Title '错误' -Button 'OK' -Icon 'Error' -Owner $window | Out-Null
                 $onlyInstalledBox.IsChecked = $false
             }
         }

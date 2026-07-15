@@ -1,206 +1,172 @@
-# How to Contribute?
+# 如何参与贡献？
 
-We welcome contributions from the community. You can contribute to Win11Debloat by:
+欢迎社区参与 Win11Debloat。你可以通过以下方式提供帮助：
 
-- Reporting issues and bugs [here](https://github.com/Raphire/Win11Debloat/issues/new?template=bug_report.yml)
-- Submitting feature requests [here](https://github.com/Raphire/Win11Debloat/issues/new?template=feature_request.yml)
-- Testing Win11Debloat
-- Creating a pull request
-- Improving the documentation
+- [报告问题和错误](https://github.com/Raphire/Win11Debloat/issues/new?template=bug_report.yml)
+- [提出功能建议](https://github.com/Raphire/Win11Debloat/issues/new?template=feature_request.yml)
+- 测试 Win11Debloat
+- 创建拉取请求（Pull Request）
+- 改进文档
 
-# Testing Win11Debloat
+# 测试 Win11Debloat
 
-You can help us test the latest changes and additions to the script. If you encounter any issues, please report them [here](https://github.com/Raphire/Win11Debloat/issues/new?template=bug_report.yml).
+你可以帮助测试脚本的最新更改和新增功能。如遇问题，请提交[错误报告](https://github.com/Raphire/Win11Debloat/issues/new?template=bug_report.yml)。
 
 > [!WARNING]
-> The prerelease version of Win11Debloat is meant for developers to test the script. Don't use this in production environments!
+> Win11Debloat 预发布版本仅供开发者测试，请勿用于生产环境。
 
-You can launch the prerelease version of Win11Debloat by running this command:
+运行以下命令可启动预发布版本：
 
 ```ps1
 & ([scriptblock]::Create((irm "https://debloat.raphi.re/"))) -Dev
 ```
 
-# Contributing Code
+# 贡献代码
 
-## Getting Started
+## 开始之前
 
-### Fork and Clone the Repository
+### Fork 并克隆仓库
 
-1. **Fork the project** on GitHub by clicking the "Fork" button at the top right of the repository page.
-
-2. **Clone the repository** to your local machine:
+1. 在 GitHub 仓库页面右上角单击“Fork”。
+2. 将仓库克隆到本地：
 
    ```powershell
    git clone https://github.com/YOUR-USERNAME/Win11Debloat.git
    cd Win11Debloat
    ```
 
-3. **Create a new branch** for your contribution:
+3. 为本次更改创建分支：
 
    ```powershell
    git checkout -b feature/your-feature-name
    ```
 
-### Running the Script Locally
+### 在本地运行脚本
 
-1. Open PowerShell as an administrator
-2. Enable script execution if necessary:
+1. 以管理员身份打开 PowerShell。
+2. 如有需要，为当前进程启用脚本执行：
 
    ```powershell
    Set-ExecutionPolicy Unrestricted -Scope Process -Force
    ```
 
-3. Navigate to your Win11Debloat directory
-4. Run the script:
+3. 进入 Win11Debloat 目录。
+4. 运行脚本：
 
    ```powershell
    .\Win11Debloat.ps1
    ```
 
-## Implementation Guidelines
+## 实现指南
 
-### Project Structure
-
-Understanding the project structure is essential for contributing effectively:
+### 项目结构
 
 ```text
 Win11Debloat/
-├── Win11Debloat.ps1             # Main PowerShell script
-├── Run.bat                      # Batch launcher for the quick launch method
-├── Scripts/                     # Additional PowerShell scripts and functions
-│   ├── Get.ps1                  # Script used for the quick launch method to automatically download and run Win11debloat
-│   ├── AppRemoval/              # App package removal logic
-│   ├── CLI/                     # Command-line interface helpers
-│   ├── Features/                # Feature apply/undo logic (e.g. InvokeChanges.ps1, ReplaceStartMenu.ps1)
-│   ├── FileIO/                  # File input/output helpers
-│   ├── GUI/                     # GUI window definitions and logic
-│   ├── Helpers/                 # Shared helper functions
-│   └── Threading/               # Threading utilities
+├── Win11Debloat.ps1             # 主 PowerShell 脚本
+├── Run.bat                      # 快速启动批处理文件
+├── Scripts/                     # PowerShell 脚本和函数
+│   ├── Get.ps1                  # 下载并运行 Win11Debloat 的快速启动脚本
+│   ├── AppRemoval/              # 应用包移除逻辑
+│   ├── CLI/                     # 命令行界面辅助函数
+│   ├── Features/                # 功能应用和撤销逻辑
+│   ├── FileIO/                  # 文件输入输出辅助函数
+│   ├── GUI/                     # 图形界面定义和逻辑
+│   ├── Helpers/                 # 通用辅助函数
+│   └── Threading/               # 线程工具
 ├── Config/
-│   ├── Apps.json                # List of supported apps for removal
-│   ├── DefaultSettings.json     # Default configuration preset
-│   ├── Features.json            # All features with metadata
-│   └── LastUsedSettings.json    # Last used configuration (generated during use)
-├── Regfiles/                    # Registry files for all features
-│   ├── Undo/                    # Registry files for reverting features
-│   └── Sysprep/                 # Registry files for Sysprep mode
-├── Schemas/                     # XAML Schemas for GUI elements
-├── Assets/                      # Static assets (icons, start menu templates)
-├── Backups/                     # Registry backups (generated during use)
-└── Logs/                        # Script logs (generated during use)
+│   ├── Apps.json                # 支持移除的应用列表
+│   ├── DefaultSettings.json     # 默认配置预设
+│   ├── Features.json            # 功能及其元数据
+│   └── LastUsedSettings.json    # 最近一次配置（运行时生成）
+├── Regfiles/                    # 各项功能使用的注册表文件
+│   ├── Undo/                    # 撤销功能的注册表文件
+│   └── Sysprep/                 # Sysprep 模式注册表文件
+├── Schemas/                     # 图形界面的 XAML 文件
+├── Assets/                      # 图标和开始菜单模板等静态资源
+├── Backups/                     # 注册表备份（运行时生成）
+└── Logs/                        # 脚本日志（运行时生成）
 ```
 
-### Best Practices
+### 最佳实践
 
-1. **Test Thoroughly**: Always test your changes on a Windows test environment before submitting. This includes undoing tweaks and running script as another user and in Sysprep mode.
-2. **Document Changes**: Update the `README.md` and other relevant documentation. Wiki documentation will be generated/updated based on the `Features.json` and `Apps.json` files.
-3. **Follow Existing Patterns**: Look at existing implementations for guidance.
-4. **Use Clear Naming**: Choose descriptive names for features, IDs, and registry files.
-5. **Minimal Changes**: Registry files should only modify what's necessary. Avoid using policies where possible.
-6. **Comment Your Code**: Add comments explaining your reasoning for complex logic in PowerShell scripts.
-7. **Version Constraints**: Use `MinVersion` and `MaxVersion` if a feature only applies to specific Windows versions.
-8. **Limit pull requests to 1 feature**: Keep pull requests limited to just one feature, this makes it easier to review your changes.
+1. 在 Windows 测试环境中充分测试更改，包括撤销调整、其他用户模式和 Sysprep 模式。
+2. 同步更新 `README.md` 和其他相关文档。Wiki 会根据 `Features.json` 和 `Apps.json` 生成或更新。
+3. 参考现有实现并遵循项目已有模式。
+4. 为功能、ID 和注册表文件使用清晰、易懂的名称。
+5. 仅修改必要的注册表项，并尽量避免使用策略项。
+6. 为复杂 PowerShell 逻辑添加说明原因的注释。
+7. 仅适用于特定 Windows 版本的功能应设置 `MinVersion` 和 `MaxVersion`。
+8. 每个拉取请求只包含一项功能，以便审查。
 
-### Code Style
+### 代码风格
 
-- Use **4 spaces** for indentation in PowerShell scripts
-- Use **2 spaces** for indentation in JSON files
-- Follow existing naming conventions
-- Keep lines reasonable in length
-- Use descriptive variable names
-- Try to limit your indentation to a max of 4-5 levels, if possible.
-- Use [Segoe Fluent Icon Assets](https://learn.microsoft.com/en-us/windows/apps/design/iconography/segoe-fluent-icons-font) for icons.
+- PowerShell 脚本使用 4 个空格缩进。
+- JSON 文件使用 2 个空格缩进。
+- 遵循现有命名约定，并使用有意义的变量名。
+- 控制行宽，尽量将嵌套限制在 4 至 5 层以内。
+- 图标使用 [Segoe Fluent Icon Assets](https://learn.microsoft.com/windows/apps/design/iconography/segoe-fluent-icons-font)。
 
-### Common Pitfalls
+### 常见问题
 
-Avoid these common mistakes when contributing:
+1. **忘记更新 `Get.ps1`**：新增命令行参数时，必须同时更新 `Win11Debloat.ps1` 和 `Scripts/Get.ps1`。
+2. **缺少注册表文件**：功能通常需要正常、`Undo` 和 `Sysprep` 三类注册表文件。
+3. **Sysprep 配置单元错误**：Sysprep 文件中的 `HKEY_CURRENT_USER` 应改为 `hkey_users\default`，并确保所有相关键都已修改。
+4. **文件位置错误**：正常操作放在 `Regfiles/`，撤销文件放在 `Regfiles/Undo/`，Sysprep 文件放在 `Regfiles/Sysprep/`。
+5. **未测试撤销**：确认撤销注册表文件能够恢复全部更改。
+6. **未测试其他用户或 Sysprep**：确认功能可应用到其他用户和 Windows 默认用户；运行 Sysprep 更改后可新建用户进行测试。
+7. **缺少分类**：`Category` 为 `null` 的功能不会出现在图形界面中，这只适合纯命令行功能。
+8. **硬编码路径**：使用 `$PSScriptRoot` 和脚本变量，确保脚本可从任意安装目录运行。
 
-1. **Forgetting Get.ps1**: When adding a new command-line parameter, contributors often remember to add it to `Win11Debloat.ps1` but forget to add the same parameter to `Scripts/Get.ps1`. Both files **must** have matching parameters.
+## 实现新功能
 
-2. **Missing Registry Files**: Always create an `Undo` registry file for reversibility, aswell as a `Sysprep` registry file for applying changes to other users and Sysprep mode.
-
-3. **Incorrect Registry Hives for Sysprep**: Sysprep registry files are meant to apply changes to a different user. Registry keys in the `HKEY_CURRENT_USER` hive must use `hkey_users\default` instead. Ensure you update **all** registry keys in the file.
-
-4. **Wrong Registry File Location**:
-   - Main action files go in `Regfiles/`
-   - Undo files go in `Regfiles/Undo/`
-   - Sysprep files go in `Regfiles/Sysprep/`
-
-   Placing files in the wrong directory may cause the script to fail when trying to apply or undo changes.
-
-5. **Not Testing Undo Functionality**: Always test that your undo registry file properly reverts all changes.
-
-6. **Not Testing User/Sysprep Functionality**: Always test that your feature works when applied to another user or to the Windows default user with Sysprep. Sysprep changes can be tested by creating new users after running the script.
-
-7. **Missing Category**: Features without a `Category` field (set to `null`) won't appear in the GUI. This is intentional for command-line-only features, make sure this is what you want before submitting.
-
-8. **Hardcoded Paths**: When writing PowerShell logic, use `$PSScriptRoot` and script variables instead of hardcoded paths. This ensures the script works regardless of where it's installed.
-
-## Implementing New Features
-
-### Adding Support for a New App
+### 添加可移除应用
 
 > [!NOTE]
-> The script automatically generates the app options for the GUI from the app information in the Apps.json file.
+> 图形界面会根据 `Apps.json` 自动生成应用选项。
 
-To add a new app that can be removed via Win11Debloat:
-
-1. **Find the AppId**: To find the correct AppId for an app:
+1. 查找应用的 AppId：
 
    ```powershell
    Get-AppxPackage | Select-Object Name, PackageFullName
    ```
 
-2. **Edit `Config/Apps.json`**: Add a new entry to the `"Apps"` array:
+2. 在 `Config/Apps.json` 的 `Apps` 数组中添加条目：
 
    ```json
    {
-     "FriendlyName": "Display Name",
+     "FriendlyName": "显示名称",
      "AppId": "AppPackageIdentifier",
-     "Description": "Brief description of the app",
+     "Description": "应用的简要说明",
      "SelectedByDefault": false,
      "Recommendation": "optional",
      "RemovalMethod": "Appx"
    }
    ```
 
-   **Field Descriptions**:
+字段说明：
 
-   - `FriendlyName`: Display name shown in the GUI.
-   - `AppId`: The `AppPackageIdentifier` from `Get-AppxPackage` or the `Id` from `winget list`, depending on removal method.
-   - `Description`: Brief description of the app shown in the GUI.
-   - `SelectedByDefault`: Set to `true` only for apps that are largely considered bloatware, otherwise set to `false`.
-   - `Recommendation`: Indicates how strongly the app is recommended for removal. One of:
-     - `safe` — safe to remove for most users
-     - `optional` — can be safely removed if the user doesn't need the app
-     - `unsafe` — should only remove if the user knows what they are doing
-   - `RemovalMethod`: The method used to remove the app. One of:
-     - `Appx` — remove as a standard Appx package via `Remove-AppxPackage` (most apps)
-     - `WinGet` — remove via WinGet (`winget uninstall`). Use for non-Appx apps such as Microsoft Copilot.
+- `FriendlyName`：图形界面中显示的名称。
+- `AppId`：来自 `Get-AppxPackage` 的包标识，或来自 `winget list` 的 `Id`。
+- `Description`：图形界面中显示的应用简介。
+- `SelectedByDefault`：仅对普遍认为是冗余软件的应用设为 `true`。
+- `Recommendation`：移除建议级别，可选 `safe`、`optional` 或 `unsafe`。
+- `RemovalMethod`：移除方式。大多数应用使用 `Appx`；非 Appx 应用可使用 `WinGet`。
 
-3. **Follow the Guidelines**:
+### 添加功能
 
-   - Use clear, user-friendly names for `FriendlyName`
-   - Set `SelectedByDefault` to `true` only for apps that are largely considered bloatware, otherwise set to `false`
-   - Provide a concise description explaining what the app does
-
-### Adding a New Feature
-
-Features are defined in `Config/Features.json` and can modify Windows settings via registry files or PowerShell commands.
+功能在 `Config/Features.json` 中定义，可通过注册表文件或 PowerShell 命令修改 Windows 设置。
 
 > [!NOTE]
-> For simple features that just include a registry change, no actual coding is required in the main script except for adding the corresponding command-line parameters. The GUI is automatically built using the information in the Features.json file.
+> 仅修改注册表的简单功能通常不需要改动主逻辑，但仍需添加相应的命令行参数。图形界面会根据 `Features.json` 自动生成。
 
-#### 1a. Create the Registry File(s)
+#### 1. 创建注册表文件
 
-Create new registry files in the `Regfiles/` directory:
+- 应用文件：`Regfiles/Disable_YourFeature.reg`
+- 撤销文件：`Regfiles/Undo/Enable_YourFeature.reg`
+- Sysprep 文件：`Regfiles/Sysprep/Disable_YourFeature.reg`
 
-- **Disable file**: `Disable_YourFeature.reg`
-- **Enable file**: `Undo/Enable_YourFeature.reg` (for reverting)
-- **Sysprep file**: `Sysprep/Disable_YourFeature.reg` (for Sysprep mode)
-
-Example registry file structure:
+示例：
 
 ```reg
 Windows Registry Editor Version 5.00
@@ -209,34 +175,25 @@ Windows Registry Editor Version 5.00
 "SettingName"=dword:00000000
 ```
 
-A Sysprep registry file should apply the same changes as the normal action. Replace the hive of registry keys that start with `HKEY_CURRENT_USER` with `hkey_users\default`. For example:
+Sysprep 文件应执行同样的更改，但将 `HKEY_CURRENT_USER` 替换为 `hkey_users\default`。
 
-```reg
-Windows Registry Editor Version 5.00
+如果功能不只是导入注册表文件，请在 `Scripts/Features/InvokeChanges.ps1` 的 `Invoke-FeatureApply` 中添加应用逻辑；需要自定义撤销时，同时更新 `Invoke-FeatureUndo`。
 
-[hkey_users\default\Software\Microsoft\Windows\CurrentVersion\YourPath]
-"SettingName"=dword:00000000
-```
+#### 2. 更新 `Features.json`
 
-#### 1b. Implement the Feature Logic
-
-If your feature requires more than just applying a registry file, add custom logic to the main script in the appropriate section. In most cases this will involve creating a new entry in the `Invoke-FeatureApply` function (in `Scripts/Features/InvokeChanges.ps1`) for your new feature. If your feature also requires custom undo logic (beyond a simple registry file import), add a corresponding entry to the `Invoke-FeatureUndo` function in the same file.
-
-#### 2. Add Feature to Features.json
-
-Add your feature to the `"Features"` array in `Config/Features.json`:
+在 `Features` 数组中添加功能：
 
 ```json
 {
   "FeatureId": "YourFeatureId",
-  "Label": "Short label describing the feature",
-  "ToolTip": "Detailed explanation of what this feature does and its impact.",
-  "Category": "Privacy & Suggested Content",
+  "Label": "功能的简短名称",
+  "ToolTip": "功能作用和影响的详细说明。",
+  "Category": "隐私和建议内容",
   "Priority": 1,
   "RegistryKey": "Disable_YourFeature.reg",
-  "ApplyText": "Disabling your feature",
-  "UndoLabel": "Short description for the undo",
-  "ApplyUndoText": "Enabling your feature",
+  "ApplyText": "正在应用：功能名称",
+  "UndoLabel": "撤销功能的简短说明",
+  "ApplyUndoText": "正在撤销：功能名称",
   "RegistryUndoKey": "Enable_YourFeature.reg",
   "RequiresReboot": false,
   "DisableWhenApplied": false,
@@ -245,53 +202,31 @@ Add your feature to the `"Features"` array in `Config/Features.json`:
 }
 ```
 
-**Field Descriptions**:
+关键字段：
 
-- `FeatureId`: Unique identifier, this must match parameter name in the Win11Debloat.ps1 and Get.ps1 files.
-- `Label`: Short description shown in the UI and wiki documentation.
-- `ToolTip`: Detailed explanation of what the feature does, used for tooltips in the GUI.
-- `Category`: One of the predefined categories (see Categories array in Features.json), features without a category won't be loaded into the GUI.
-- `Priority`: Optional. The priority value (int) is used to sort features within a category. If this field is omitted the feature will be sorted based on the order in the Features.json file.
-- `RegistryKey`: Filename of the registry file to apply (in Regfiles/ directory) or null if feature does not require registry changes.
-- `ApplyText`: Message shown when applying the feature.
-- `UndoLabel`: Short description for the undo shown in the UI.
-- `ApplyUndoText`: Message shown when undoing the feature.
-- `RegistryUndoKey`: Filename of the registry file to revert changes or null if feature does not require registry changes.
-- `RequiresReboot`: Optional boolean. Set to `true` if the feature requires a system reboot to take effect.
-- `DisableWhenApplied`: Optional boolean. Set to `true` if the feature has no supported undo method.
-- `MinVersion`: Minimum Windows build version (e.g., "22000") or null.
-- `MaxVersion`: Maximum Windows version or null.
+- `FeatureId`：唯一标识，必须与 `Win11Debloat.ps1` 和 `Get.ps1` 中的参数名一致。
+- `Label`、`ToolTip`：图形界面和 Wiki 中显示的名称与说明。
+- `Category`：`Categories` 数组中预定义的分类；没有分类的功能不会载入图形界面。
+- `Priority`：可选的分类内排序值。
+- `RegistryKey`、`RegistryUndoKey`：应用和撤销所用的注册表文件名；不需要时设为 `null`。
+- `RequiresReboot`：功能是否需要重启才能生效。
+- `DisableWhenApplied`：没有受支持撤销方式时设为 `true`。
+- `MinVersion`、`MaxVersion`：适用的最小和最大 Windows 版本。
 
-#### 3. Add Command-Line Parameter
+#### 3. 添加命令行参数
 
-Add a corresponding parameter to both `Win11Debloat.ps1` AND `Scripts/Get.ps1`, the parameter name should match the FeatureId you have defined in `Features.json`. In most cases this will be a switch parameter, example:
+在 `Win11Debloat.ps1` 和 `Scripts/Get.ps1` 中添加同名参数，通常为：
 
 ```powershell
 [switch]$YourFeatureId,
 ```
 
-### Adding a Feature to the Default Preset
+### 将功能加入默认预设
 
 > [!IMPORTANT]
-> The default preset is intentionally conservative. Features added to it should be thoroughly tested and widely beneficial. When in doubt, leave the feature out of the default preset.
+> 默认预设应保持保守。只有经过充分测试、普遍有益且易于撤销的功能才应加入。
 
-The default preset (`Config/DefaultSettings.json`) defines which features are automatically applied when users run Win11Debloat in "Default Mode" or with the `-RunDefaults` parameter. This preset should include features that are widely considered to improve the Windows experience without breaking functionality.
-
-**When to add a feature to the default preset:**
-
-- The feature removes obvious bloatware or distractions
-- The feature enhances privacy without breaking core functionality
-- The feature is generally non-controversial and beneficial to most users
-- The change can be easily reverted if needed
-
-**When NOT to add a feature to the default preset:**
-
-- The feature significantly changes core Windows behavior
-- The feature might break applications or workflows for some users
-- The feature is highly opinionated or preference-based
-- The feature is experimental or not thoroughly tested
-
-To add your feature to the default preset, edit `Config/DefaultSettings.json` and add a new entry to the `"Settings"` array:
+在 `Config/DefaultSettings.json` 的 `Settings` 数组中添加：
 
 ```json
 {
@@ -300,102 +235,63 @@ To add your feature to the default preset, edit `Config/DefaultSettings.json` an
 }
 ```
 
-**Field Descriptions**:
+### 添加分类
 
-- `Name`: Must exactly match the `FeatureId` from Features.json
-- `Value`: Set to `true` to enable the feature in default mode
-
-**Example:**
+在 `Config/Features.json` 的 `Categories` 数组中添加：
 
 ```json
 {
-  "Version": "1.0",
-  "Settings": [
-    {
-      "Name": "CreateRestorePoint",
-      "Value": true
-    },
-    {
-      "Name": "DisableTelemetry",
-      "Value": true
-    },
-    {
-      "Name": "YourFeatureId",
-      "Value": true
-    }
-  ]
+  "Name": "分类名称",
+  "Icon": "&#xE####;"
 }
 ```
 
-### Adding a Category
+图标代码请参考 [Segoe Fluent Icon Assets](https://learn.microsoft.com/windows/apps/design/iconography/segoe-fluent-icons-font)。
 
-To add a new category for organizing features:
+### 添加界面选项组
 
-- Add a new category entry to the `"Categories"` array in `Config/Features.json`:
-
-  ```json
-  {
-    "Name": "Your Category Name",
-    "Icon": "&#xE#### ;"
-  }
-  ```
-
-> [!TIP]
-> Use [Segoe Fluent Icon Assets](https://learn.microsoft.com/en-us/windows/apps/design/iconography/segoe-fluent-icons-font) for icon codes.
-
-### Adding UI Groups
-
-UI Groups allow features to be grouped together in the GUI with a combobox (dropdown) selection:
+界面选项组可将多个功能组合为下拉选项：
 
 ```json
 {
   "GroupId": "UniqueGroupId",
-  "Label": "Display label for the group",
-  "ToolTip": "Explanation of what this group controls",
-  "Category": "Category Name",
+  "Label": "选项组名称",
+  "ToolTip": "选项组控制内容的说明",
+  "Category": "分类名称",
   "Priority": 1,
   "Values": [
     {
-      "Label": "Option 1",
+      "Label": "选项 1",
       "FeatureIds": ["FeatureId1"]
     },
     {
-      "Label": "Option 2",
+      "Label": "选项 2",
       "FeatureIds": ["FeatureId2"]
     }
   ]
 }
 ```
 
-## Submitting a Pull Request
+## 提交拉取请求
 
-1. **Commit your changes** with clear, descriptive commit messages:
+1. 使用清晰的提交消息提交更改：
 
    ```powershell
    git add .
    git commit -m "Add feature: Description of your changes"
    ```
 
-2. **Push to your fork**:
+2. 推送到你的 Fork：
 
    ```powershell
    git push origin feature/your-feature-name
    ```
 
-3. **Create a Pull Request** on GitHub:
+3. 在 GitHub 上创建 Pull Request，选择你的 Fork 和分支，并说明更改内容及涉及的注册表项，同时关联相关 Issue。
+4. 根据代码审查反馈继续调整。
 
-   - Go to the original Win11Debloat repository
-   - Click "New Pull Request"
-   - Select your fork and branch
-   - Provide a clear description of your changes, include references to the registry keys used
-   - Reference any related issues
+# 有疑问？
 
-4. **Respond to feedback**: Be prepared to make adjustments based on code review feedback.
-
-# Questions?
-
-If you have questions about contributing, feel free to:
-
-- Open a [discussion](https://github.com/Raphire/Win11Debloat/discussions)
-- Comment on an existing issue
-- Ask in your pull request
+- 发起[讨论](https://github.com/Raphire/Win11Debloat/discussions)
+- 在现有 Issue 下留言
+- 在你的 Pull Request 中提问

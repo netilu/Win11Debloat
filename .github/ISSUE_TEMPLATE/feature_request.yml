@@ -1,46 +1,46 @@
-name: "💡 Feature request"
-description: "Suggest a new feature or improvement"
+name: "💡 功能建议"
+description: "建议新功能或改进"
 labels: ["enhancement"]
 
 body:
   - type: markdown
     attributes:
       value: |
-        # 💡 **Feature request**
-        Thanks for taking the time to suggest a feature for Win11Debloat! Please include as much detail as possible to help us understand and evaluate your suggestion.
+        # 💡 **功能建议**
+        感谢你为 Win11Debloat 提出建议！请尽可能提供详细信息，以便我们理解并评估你的想法。
 
   - type: checkboxes
     id: checklist
     attributes:
-      label: Checklist
-      description: Please confirm the following before posting your issue.
+      label: 检查清单
+      description: 提交建议前，请确认以下事项。
       options:
-        - label: I have searched for existing issues/discussions and didn't find any similar ones.
+        - label: 我已搜索现有 Issue 和讨论，未发现相同建议。
           required: true
 
   - type: textarea
     id: description
     attributes:
-      label: Describe the feature or improvement
-      description: Provide a clear and concise description of your suggested feature or improvement. Explain why you think this feature is needed and how it would benefit users.
-      placeholder: Describe the feature or improvement.
+      label: 功能或改进说明
+      description: 请简明描述建议的功能或改进，并说明它为何有必要、能为用户带来什么帮助。
+      placeholder: 请描述建议的功能或改进。
     validations:
       required: true
 
   - type: textarea
     id: examples
     attributes:
-      label: Examples
-      description: Provide examples of how the feature could work or be implemented.
-      placeholder: e.g. Code snippets, mockups, or links to other implementations of similar features.
+      label: 示例
+      description: 请举例说明该功能可以如何工作或实现。
+      placeholder: 例如：代码片段、界面草图或类似功能的实现链接。
     validations:
       required: false
 
   - type: textarea
     id: additional_context
     attributes:
-      label: Additional context
-      description: Add any other context or screenshots about the feature request here.
-      placeholder: e.g. Screenshots, links to related discussions, etc.
+      label: 补充信息
+      description: 在此添加与功能建议有关的其他信息或截图。
+      placeholder: 例如：截图、相关讨论链接等。
     validations:
       required: false

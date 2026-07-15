@@ -1,4 +1,4 @@
-# Loads a JSON file from the specified path and returns the parsed object
+﻿# Loads a JSON file from the specified path and returns the parsed object
 # Returns $null if the file doesn't exist or if parsing fails
 function LoadJsonFile {
     param (
@@ -9,7 +9,7 @@ function LoadJsonFile {
     
     if (-not (Test-Path $filePath)) {
         if (-not $optionalFile) {
-            Write-Error "File not found: $filePath"
+            Write-Error "找不到文件：$filePath"
         }
         return $null
     }
@@ -19,14 +19,14 @@ function LoadJsonFile {
         
         # Validate version if specified
         if ($expectedVersion -and $jsonContent.Version -and $jsonContent.Version -ne $expectedVersion) {
-            Write-Error "$(Split-Path $filePath -Leaf) version mismatch (expected $expectedVersion, found $($jsonContent.Version))"
+            Write-Error "$(Split-Path $filePath -Leaf) 版本不匹配（预期 $expectedVersion，实际 $($jsonContent.Version)）"
             return $null
         }
         
         return $jsonContent
     }
     catch {
-        Write-Error "Failed to parse JSON file: $filePath"
+        Write-Error "无法解析 JSON 文件：$filePath"
         return $null
     }
 }

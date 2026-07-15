@@ -1,16 +1,16 @@
-# Prints the header for the script
+﻿# Prints the header for the script
 function PrintHeader {
     param (
         $title
     )
 
-    $fullTitle = " Win11Debloat Script - $title"
+    $fullTitle = " Win11Debloat 脚本 - $title"
 
     if ($script:Params.ContainsKey("Sysprep")) {
-        $fullTitle = "$fullTitle (Sysprep mode)"
+        $fullTitle = "$fullTitle（Sysprep 模式）"
     }
     else {
-        $fullTitle = "$fullTitle (User: $(GetUserName))"
+        $fullTitle = "$fullTitle（用户：$(GetUserName)）"
     }
 
     Clear-Host

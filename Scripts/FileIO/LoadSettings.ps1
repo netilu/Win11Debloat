@@ -1,4 +1,4 @@
-# Loads settings from a JSON file and adds them to script params
+﻿# Loads settings from a JSON file and adds them to script params
 function LoadSettings {
     param (
         [string]$filePath,
@@ -8,7 +8,7 @@ function LoadSettings {
     $settingsJson = LoadJsonFile -filePath $filePath -expectedVersion $expectedVersion
     
     if (-not $settingsJson -or -not $settingsJson.Settings) {
-        throw "Failed to load settings from $(Split-Path $filePath -Leaf)"
+        throw "无法从 $(Split-Path $filePath -Leaf) 加载设置"
     }
 
     # Get current Windows build version
